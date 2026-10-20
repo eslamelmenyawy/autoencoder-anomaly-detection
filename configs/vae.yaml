@@ -12,7 +12,7 @@ data:
 
 model:
   name: vae
-  kl_weight: 1.0
+  kl_weight: 0.01
   channels: [32, 64, 128, 256]
   latent_dim: 128
 

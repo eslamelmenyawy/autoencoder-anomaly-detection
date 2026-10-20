@@ -23,7 +23,7 @@ class ModelConfig:
     name: str = "conv_ae"  # conv_ae | vae | memae
     channels: list[int] = field(default_factory=lambda: [32, 64, 128, 256])
     latent_dim: int = 128
-    kl_weight: float = 1.0  # VAE only
+    kl_weight: float = 0.01  # VAE only (beta; larger values cause posterior collapse)
     memory_size: int = 100  # MemAE only
     shrink_threshold: float = 0.0025  # MemAE only
     entropy_weight: float = 0.0002  # MemAE only

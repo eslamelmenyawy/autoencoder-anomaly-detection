@@ -11,7 +11,7 @@ from aead.scoring import reconstruction_loss
 
 class VariationalAutoencoder(BaseAutoencoder):
     def __init__(self, image_size: int, channels: list[int], latent_dim: int,
-                 kl_weight: float = 1.0):
+                 kl_weight: float = 0.01):
         super().__init__(image_size, channels, latent_dim)
         self.kl_weight = kl_weight
         self.fc_mu = nn.Linear(self.feat_dim, latent_dim)
