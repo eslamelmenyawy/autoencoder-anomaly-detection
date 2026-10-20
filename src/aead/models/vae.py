@@ -16,6 +16,11 @@ class VariationalAutoencoder(BaseAutoencoder):
         self.kl_weight = kl_weight
         self.fc_mu = nn.Linear(self.feat_dim, latent_dim)
         self.fc_logvar = nn.Linear(self.feat_dim, latent_dim)
+        # Start with a near-deterministic posterior (sigma ~ 0.05). With the default init
+        # sigma ~ 1, the sampling noise drowns the signal, the decoder learns to ignore z
+        # and the model collapses to the mean image (posterior collapse).
+        nn.init.zeros_(self.fc_logvar.weight)
+        nn.init.constant_(self.fc_logvar.bias, -6.0)
         self.from_latent = nn.Linear(latent_dim, self.feat_dim)
 
     def forward(self, x: torch.Tensor) -> dict[str, torch.Tensor]:
