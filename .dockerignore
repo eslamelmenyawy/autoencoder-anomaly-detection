@@ -1,0 +1,9 @@
+.git
+data/
+runs/
+!runs/*/export/
+predictions/
+**/__pycache__
+.venv
+tests/
+docs/

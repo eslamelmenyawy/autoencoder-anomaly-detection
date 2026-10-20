@@ -1,0 +1,34 @@
+# Variational autoencoder (reconstruction from the posterior mean at inference)
+experiment: vae
+seed: 42
+output_dir: runs
+
+data:
+  root: data/synthetic
+  image_size: 128
+  val_split: 0.1
+  augment: true
+  num_workers: 2
+
+model:
+  name: vae
+  kl_weight: 1.0
+  channels: [32, 64, 128, 256]
+  latent_dim: 128
+
+train:
+  epochs: 60
+  batch_size: 16
+  lr: 0.001
+  weight_decay: 0.00001
+  ssim_weight: 0.5
+  ssim_warmup_epochs: 10
+  early_stopping_patience: 15
+  device: auto
+  amp: true
+
+scoring:
+  ssim_weight: 0.5
+  blur_sigma: 4.0
+  topk_ratio: 0.01
+  threshold_percentile: 99.0
