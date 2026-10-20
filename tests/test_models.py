@@ -43,7 +43,8 @@ def test_memae_attention_is_sparse_and_normalised():
     model = build_detector(cfg).autoencoder.eval()
     with torch.no_grad():
         w = model(torch.rand(4, 3, 64, 64))["attention"]
-    assert torch.allclose(w.sum(dim=1), torch.ones(4), atol=1e-4)
+    assert w.shape == (4 * 4 * 4, 20)  # one query per spatial position of the 4x4 map
+    assert torch.allclose(w.sum(dim=1), torch.ones(len(w)), atol=1e-4)
     assert (w == 0).any()  # hard shrinkage zeroes out weak memory slots
 
 
