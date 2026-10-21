@@ -173,7 +173,7 @@ your_dataset/
 aead train --config configs/memae.yaml --data path/to/your_dataset --name my_product --evaluate
 ```
 
-8-bit and 16-bit images (common with industrial cameras) are both supported. Adjust `image_size`, `channels` and `latent_dim` in the YAML for larger inputs.
+8-bit and 16-bit images (common with industrial cameras) are both supported. See the full guide, with a tuning table for real data, in [docs/CUSTOM_DATASET.md](docs/CUSTOM_DATASET.md). Adjust `image_size`, `channels` and `latent_dim` in the YAML for larger inputs.
 
 ---
 
